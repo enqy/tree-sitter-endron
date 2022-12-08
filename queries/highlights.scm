@@ -6,25 +6,62 @@
 [
   "@"
   "~"
+] @constructor
+
+[
   "!"
   "|"
-  "?"
   "#"
-  (aluFunc)
-] @operator
+] @function.call
+
+[
+  "?"
+] @function.builtin
+
+[
+  "$"
+] @type.builtin
+
+(aluFunc) @operator
 
 (opDecl
   name: (ident) @function
-  expr: (keyword) @type.builtin @keyword.fn
-    (#match? @keyword.fn "fn"))
+  expr: [
+    (earlyOpType
+      name: (ident) @keyword.fn
+      (#match? @keyword.fn "fn"))
+    (block
+      (op
+        (opType
+          (earlyOpType
+            name: (ident) @keyword.fn
+            (#match? @keyword.fn "fn")))))
+  ])
 
 (opDecl
   name: (ident) @type
-  expr: (keyword) @type.builtin @keyword.struct
-    (#match? @keyword.struct "struct"))
+  expr: [
+    (earlyOpType
+      name: (ident) @keyword.type
+      (#match? @keyword.type "type"))
+    (block
+      (op
+        (opType
+          (earlyOpType
+            name: (ident) @keyword.type
+            (#match? @keyword.type "type")))))
+  ])
 
 (opDecl
   name: (ident) @variable)
+
+(earlyOpType
+  name: (scope
+          root: _
+          path: (ident) @type))
+
+(earlyOpType
+  name: (ident) @type.builtin)
 
 (opSet name: (ident) @variable)
 
@@ -40,14 +77,11 @@
 
 (ident) @variable
 
-(keyword) @keyword
-
 (literalString) @string
 
-[
-  (literalNumber)
-  (literalDecimal)
-] @number
+(literalNumber) @number
+
+(literalDecimal) @number @float
 
 [
   ";"

@@ -28,6 +28,46 @@
     }
   },
   {
+    "type": "earlyOpType",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "earlyOpType",
+            "named": true
+          },
+          {
+            "type": "ident",
+            "named": true
+          },
+          {
+            "type": "literalDecimal",
+            "named": true
+          },
+          {
+            "type": "literalNumber",
+            "named": true
+          },
+          {
+            "type": "literalString",
+            "named": true
+          },
+          {
+            "type": "scope",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "op",
     "named": true,
     "fields": {},
@@ -58,6 +98,10 @@
         {
           "type": "opSet",
           "named": true
+        },
+        {
+          "type": "opType",
+          "named": true
         }
       ]
     }
@@ -86,11 +130,11 @@
           "named": true
         },
         {
-          "type": "ident",
+          "type": "earlyOpType",
           "named": true
         },
         {
-          "type": "keyword",
+          "type": "ident",
           "named": true
         },
         {
@@ -125,11 +169,11 @@
             "named": true
           },
           {
-            "type": "ident",
+            "type": "earlyOpType",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "ident",
             "named": true
           },
           {
@@ -160,11 +204,11 @@
           "named": true
         },
         {
-          "type": "ident",
+          "type": "earlyOpType",
           "named": true
         },
         {
-          "type": "keyword",
+          "type": "ident",
           "named": true
         },
         {
@@ -199,11 +243,11 @@
             "named": true
           },
           {
-            "type": "ident",
+            "type": "earlyOpType",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "ident",
             "named": true
           },
           {
@@ -234,11 +278,11 @@
           "named": true
         },
         {
-          "type": "ident",
+          "type": "earlyOpType",
           "named": true
         },
         {
-          "type": "keyword",
+          "type": "ident",
           "named": true
         },
         {
@@ -273,11 +317,11 @@
             "named": true
           },
           {
-            "type": "ident",
+            "type": "earlyOpType",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "ident",
             "named": true
           },
           {
@@ -308,11 +352,11 @@
           "named": true
         },
         {
-          "type": "ident",
+          "type": "earlyOpType",
           "named": true
         },
         {
-          "type": "keyword",
+          "type": "ident",
           "named": true
         },
         {
@@ -347,11 +391,11 @@
             "named": true
           },
           {
-            "type": "ident",
+            "type": "earlyOpType",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "ident",
             "named": true
           },
           {
@@ -381,11 +425,45 @@
             "named": true
           },
           {
+            "type": "earlyOpType",
+            "named": true
+          },
+          {
             "type": "ident",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "literalDecimal",
+            "named": true
+          },
+          {
+            "type": "literalNumber",
+            "named": true
+          },
+          {
+            "type": "literalString",
+            "named": true
+          },
+          {
+            "type": "scope",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "block",
+            "named": true
+          },
+          {
+            "type": "earlyOpType",
+            "named": true
+          },
+          {
+            "type": "ident",
             "named": true
           },
           {
@@ -421,11 +499,11 @@
             "named": true
           },
           {
-            "type": "ident",
+            "type": "earlyOpType",
             "named": true
           },
           {
-            "type": "keyword",
+            "type": "ident",
             "named": true
           },
           {
@@ -456,11 +534,50 @@
           "named": true
         },
         {
+          "type": "earlyOpType",
+          "named": true
+        },
+        {
           "type": "ident",
           "named": true
         },
         {
-          "type": "keyword",
+          "type": "literalDecimal",
+          "named": true
+        },
+        {
+          "type": "literalNumber",
+          "named": true
+        },
+        {
+          "type": "literalString",
+          "named": true
+        },
+        {
+          "type": "scope",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "opType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "earlyOpType",
+          "named": true
+        },
+        {
+          "type": "ident",
           "named": true
         },
         {
@@ -564,6 +681,10 @@
     "named": false
   },
   {
+    "type": "$",
+    "named": false
+  },
+  {
     "type": "*",
     "named": false
   },
@@ -633,10 +754,6 @@
   },
   {
     "type": "ident",
-    "named": true
-  },
-  {
-    "type": "keyword",
     "named": true
   },
   {

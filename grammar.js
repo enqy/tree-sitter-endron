@@ -26,6 +26,7 @@ module.exports = grammar({
     op: ($) =>
       choice(
         $.opDecl,
+        $.opType,
         $.opSet,
         $.opCall,
         $.opBuiltin,
@@ -39,6 +40,29 @@ module.exports = grammar({
         field("name", $._expr),
         ";",
         field("expr", $._expr),
+        optional(
+          seq(
+            ",",
+            field("value", $._expr),
+          ),
+        ),
+      ),
+
+    opType: ($) =>
+      seq(
+        $.earlyOpType,
+        optional(
+          seq(
+            ";",
+            $._params,
+          ),
+        ),
+      ),
+
+    earlyOpType: ($) =>
+      seq(
+        "$",
+        field("name", $._expr),
       ),
 
     opSet: ($) =>
@@ -109,12 +133,12 @@ module.exports = grammar({
     _expr: ($) =>
       choice(
         $.ident,
-        $.keyword,
         $.literalString,
         $.literalNumber,
         $.literalDecimal,
         $.block,
         $.scope,
+        $.earlyOpType,
       ),
 
     scope: ($) =>
@@ -161,13 +185,11 @@ module.exports = grammar({
 
     ident: ($) => /[a-zA-Z_][a-zA-Z0-9_]*/,
 
-    keyword: ($) => /\$[a-zA-Z_][a-zA-Z0-9_]*/,
-
     literalString: ($) => /"(?:\\.|[^"\\])*"/,
 
-    literalNumber: ($) => /[0-9]+/,
+    literalNumber: ($) => /-?[0-9]+/,
 
-    literalDecimal: ($) => /[0-9]+\.[0-9]+/,
+    literalDecimal: ($) => /-?[0-9]+\.[0-9]+/,
 
     lineComment: ($) => /\/\/.*/,
 
