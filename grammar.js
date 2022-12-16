@@ -99,6 +99,16 @@ module.exports = grammar({
         $._expr,
       ),
 
+    opLoop: ($) =>
+      seq(
+        "%",
+        field("cond", $._expr),
+        ";",
+        $._expr,
+        ",",
+        optional($._expr),
+      ),
+
     opAlu: ($) =>
       seq(
         "#",
